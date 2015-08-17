@@ -44,9 +44,7 @@ router.get('/contacts/:id', function(req, res){
         else {
             res.status(200).json(contacts);
         }
-
     });
-
 });
 
 router.put('/contacts/:id', function(req, res){
@@ -58,9 +56,7 @@ router.put('/contacts/:id', function(req, res){
         else {
             res.status(200).json(contacts);
         }
-
     });
-
 });
 
 
