@@ -11,9 +11,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/contacts', function (req, res) {
    contactsSchemaModel.find(function(err, contacts){
-       console.log(contacts);
-       console.log("err",err);
-        res.send(contacts);
+       if (err) {
+           res.status(500).json({ message: 'Something Broke!' });
+       } else {
+           res.status(200).json(contacts);
+       }
 
    })
 });
@@ -50,7 +52,13 @@ router.get('/contacts/:id', function(req, res){
 router.put('/contacts/:id', function(req, res){
     console.log(req.params.id);
     console.log(req.body.name);
-    contactsSchemaModel.findByIdAndUpdate(req.params.id, req.body, function (err, res) {
+    var bod = req.body;
+    contactsSchemaModel.findByIdAndUpdate(req.params.id, bod, function (err, contacts) {
+        if (err) res.status(500).json(err);
+        else {
+            res.status(200).json(contacts);
+        }
+
     });
 
 });

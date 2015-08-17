@@ -38,7 +38,8 @@ angular.module('myApp',[]).controller('AppCtrl',function($scope, $http){
     };
     $scope.updateContact = function(){
         console.log($scope.contact._id);
-        $http.put("/contacts/" +$scope.contact._id, $scope.contact).success(function(res){
+        $http.put('/contacts/' +$scope.contact._id, $scope.contact).success(function(res){
+            console.log(res);
             refresh();
         })
     }
